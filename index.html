@@ -3,21 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Gabriela 💛</title>
+<title>Gabriela 💛</title>
 
 <style>
 body {
     margin: 0;
-    padding: 0;
     background: linear-gradient(to bottom, #fff7c2, #ffd700);
     font-family: Arial, sans-serif;
     text-align: center;
     color: #333;
-    overflow-x: hidden;
 }
 
 h1 {
-    margin-top: 60px;
+    margin-top: 40px;
     font-size: 42px;
 }
 
@@ -25,30 +23,32 @@ p {
     font-size: 20px;
     width: 85%;
     margin: auto;
-    line-height: 1.6;
+}
+
+#countdown {
+    font-size: 26px;
+    margin: 20px;
+    font-weight: bold;
 }
 
 button {
-    margin-top: 30px;
-    padding: 15px 25px;
-    font-size: 18px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 30px;
-    background-color: #ffcc00;
+    border-radius: 25px;
+    background: #ffcc00;
+    font-size: 16px;
     cursor: pointer;
-    transition: 0.3s;
+    margin-top: 15px;
 }
 
 button:hover {
-    background-color: #ffdb4d;
-    transform: scale(1.05);
+    background: #ffdb4d;
 }
 
-.hidden-message {
-    display: none;
-    margin-top: 25px;
-    font-size: 22px;
-    font-weight: bold;
+img {
+    width: 250px;
+    margin: 15px;
+    border-radius: 20px;
 }
 
 .heart {
@@ -72,33 +72,52 @@ button:hover {
 <h1>Gabriela 💛</h1>
 
 <p>
-Hoy celebramos 22 meses juntos…  
-22 meses de amor, risas, aprendizajes y momentos que jamás quiero olvidar.  
-Gracias por existir, por quedarte, por elegirnos cada día.  
-Si pudiera elegir mil veces… siempre te elegiría a ti.
+Estamos celebrando 22 meses juntos.  
+Gracias por ser mi amor, mi paz y mi persona favorita.
 </p>
 
-<button onclick="showMessage()">Haz clic aquí 💛</button>
+<div id="countdown"></div>
 
-<div class="hidden-message" id="message">
-Feliz 22 meses mi amor 💛✨  
-Eres mi lugar seguro, mi alegría diaria y la persona que quiero en mi futuro.
-</div>
+<button onclick="playMusic()">Activar música 💛</button>
 
 <br><br>
 
-<!-- Música romántica instrumental -->
-<audio controls autoplay loop>
+<audio id="music" loop>
   <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
-Tu navegador no soporta audio.
 </audio>
+<h2>Nuestros Momentos 💛</h2>
+
+<img src="IMG_0190_MP.JPG">
+<img src="IMG_0246.JPG">
+<img src="IMG_0298_MP.JPG">
+<img src="IMG_0312_MP.JP">
+<img src="IMG_3495.JPG">
+
+
 
 <script>
-function showMessage() {
-    document.getElementById("message").style.display = "block";
+// Contador hasta 24 febrero 2026
+const targetDate = new Date("February 24, 2026 00:00:00").getTime();
+
+const countdownFunction = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById("countdown").innerHTML =
+    "Faltan 💛 " + days + " días, " + hours + " horas y " + minutes + " minutos para nuestros 22 meses 💛";
+
+}, 1000);
+
+// Música
+function playMusic() {
+    document.getElementById("music").play();
 }
 
-function createHeart() {
+// Corazones Fotonction createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "💛";
