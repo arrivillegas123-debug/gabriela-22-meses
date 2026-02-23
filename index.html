@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Gabriela 💛</title>
 
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #fff7c2, #ffd700);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #333;
+    overflow-x: hidden;
+}
+
+h1 {
+    margin-top: 60px;
+    font-size: 42px;
+}
+
+p {
+    font-size: 20px;
+    width: 85%;
+    margin: auto;
+    line-height: 1.6;
+}
+
+button {
+    margin-top: 30px;
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background-color: #ffcc00;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #ffdb4d;
+    transform: scale(1.05);
+}
+
+.hidden-message {
+    display: none;
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.heart {
+    position: fixed;
+    top: -10px;
+    color: #ffd700;
+    font-size: 24px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Gabriela 💛</h1>
+
+<p>
+Hoy celebramos 22 meses juntos…  
+22 meses de amor, risas, aprendizajes y momentos que jamás quiero olvidar.  
+Gracias por existir, por quedarte, por elegirnos cada día.  
+Si pudiera elegir mil veces… siempre te elegiría a ti.
+</p>
+
+<button onclick="showMessage()">Haz clic aquí 💛</button>
+
+<div class="hidden-message" id="message">
+Feliz 22 meses mi amor 💛✨  
+Eres mi lugar seguro, mi alegría diaria y la persona que quiero en mi futuro.
+</div>
+
+<br><br>
+
+<!-- Música romántica instrumental -->
+<audio controls autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+Tu navegador no soporta audio.
+</audio>
+
+<script>
+function showMessage() {
+    document.getElementById("message").style.display = "block";
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💛";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
