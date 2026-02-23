@@ -8,14 +8,14 @@
 <style>
 body {
     margin: 0;
-    background: linear-gradient(to bottom, #fff7c2, #ffd700);
+    background: linear-gradient(to bottom, #fff8cc, #ffd700);
     font-family: Arial, sans-serif;
     text-align: center;
     color: #333;
 }
 
 h1 {
-    margin-top: 40px;
+    margin-top: 50px;
     font-size: 42px;
 }
 
@@ -23,32 +23,28 @@ p {
     font-size: 20px;
     width: 85%;
     margin: auto;
+    line-height: 1.6;
 }
 
 #countdown {
-    font-size: 26px;
-    margin: 20px;
+    font-size: 28px;
+    margin: 30px;
     font-weight: bold;
 }
 
-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 25px;
-    background: #ffcc00;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-button:hover {
-    background: #ffdb4d;
+#finalMessage {
+    display: none;
+    font-size: 26px;
+    margin-top: 30px;
+    color: #b8860b;
+    font-weight: bold;
 }
 
 img {
     width: 250px;
     margin: 15px;
     border-radius: 20px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
 }
 
 .heart {
@@ -72,36 +68,41 @@ img {
 <h1>Gabriela 💛</h1>
 
 <p>
-Estamos celebrando 22 meses juntos.  
-Gracias por ser mi amor, mi paz y mi persona favorita.
+Cada segundo contigo vale oro.  
+Gracias por estos 22 meses llenos de amor, paciencia y sueños compartidos.
 </p>
 
 <div id="countdown"></div>
 
-<button onclick="playMusic()">Activar música 💛</button>
-
-<br><br>
-
-<audio id="music" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
-</audio>
 <h2>Nuestros Momentos 💛</h2>
 
 <img src="IMG_0190_MP.JPG">
 <img src="IMG_0246.JPG">
 <img src="IMG_0298_MP.JPG">
-<img src="IMG_0312_MP.JP">
+<img src="IMG_0312_MP.JPG">
 <img src="IMG_3495.JPG">
 
-
+<div id="finalMessage">
+💛 ¡Feliz 22 meses mi amor! 💛  
+Gracias por elegirme cada día.  
+Eres mi lugar favorito en el mundo.
+</div>
 
 <script>
-// Contador hasta 24 febrero 2026
+
+// Fecha objetivo: 24 febrero 2026
 const targetDate = new Date("February 24, 2026 00:00:00").getTime();
 
 const countdownFunction = setInterval(function() {
     const now = new Date().getTime();
     const distance = targetDate - now;
+
+    if (distance <= 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").style.display = "none";
+        document.getElementById("finalMessage").style.display = "block";
+        return;
+    }
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -112,12 +113,9 @@ const countdownFunction = setInterval(function() {
 
 }, 1000);
 
-// Música
-function playMusic() {
-    document.getElementById("music").play();
-}
 
-// Corazones Fotonction createHeart() {
+// Corazones cayendo
+function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "💛";
@@ -131,6 +129,7 @@ function playMusic() {
 }
 
 setInterval(createHeart, 300);
+
 </script>
 
 </body>
