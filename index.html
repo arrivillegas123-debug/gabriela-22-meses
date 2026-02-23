@@ -8,43 +8,70 @@
 <style>
 body {
     margin: 0;
-    background: linear-gradient(to bottom, #fff8cc, #ffd700);
     font-family: Arial, sans-serif;
     text-align: center;
-    color: #333;
+    color: white;
+    overflow-x: hidden;
+    background: black;
 }
 
-h1 {
-    margin-top: 50px;
-    font-size: 42px;
+/* Fondo de estrellas */
+.stars {
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow:
+    50px 80px white, 150px 200px white, 300px 100px white,
+    400px 250px white, 600px 300px white, 800px 150px white,
+    100px 400px white, 250px 500px white, 500px 600px white,
+    700px 450px white, 900px 350px white, 1100px 200px white,
+    1300px 300px white, 1400px 100px white;
+    animation: twinkle 2s infinite alternate;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
-p {
-    font-size: 20px;
-    width: 85%;
-    margin: auto;
-    line-height: 1.6;
+@keyframes twinkle {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
 }
 
-#countdown {
-    font-size: 28px;
-    margin: 30px;
-    font-weight: bold;
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
 }
 
-#finalMessage {
-    display: none;
-    font-size: 26px;
-    margin-top: 30px;
-    color: #b8860b;
-    font-weight: bold;
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    background: #ffd700;
+    cursor: pointer;
+    margin-top: 15px;
 }
+
+.hidden { display: none; }
+
+h1 { margin-top: 40px; }
+
+#countdown { font-size: 22px; margin: 20px; font-weight: bold; }
 
 img {
     width: 250px;
     margin: 15px;
     border-radius: 20px;
-    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0px 5px 15px rgba(255,215,0,0.3);
 }
 
 .heart {
@@ -56,21 +83,24 @@ img {
 }
 
 @keyframes fall {
-    to {
-        transform: translateY(110vh);
-    }
+    to { transform: translateY(110vh); }
 }
 </style>
 </head>
 
 <body>
 
-<h1>Gabriela 💛</h1>
+<div class="stars"></div>
 
-<p>
-Cada segundo contigo vale oro.  
-Gracias por estos 22 meses llenos de amor, paciencia y sueños compartidos.
-</p>
+<div id="intro">
+    <h2>Gabriela 💛</h2>
+    <p>Tengo algo especial para ti bajo las estrellas…</p>
+    <button onclick="enterSite()">Entrar 💛</button>
+</div>
+
+<div id="main" class="hidden">
+
+<h1>22 Meses Juntos 💛</h1>
 
 <div id="countdown"></div>
 
@@ -82,15 +112,16 @@ Gracias por estos 22 meses llenos de amor, paciencia y sueños compartidos.
 <img src="IMG_0312_MP.JPG">
 <img src="IMG_3495.JPG">
 
-<div id="finalMessage">
-💛 ¡Feliz 22 meses mi amor! 💛  
-Gracias por elegirme cada día.  
-Eres mi lugar favorito en el mundo.
 </div>
 
 <script>
 
-// Fecha objetivo: 24 febrero 2026
+function enterSite() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("main").classList.remove("hidden");
+}
+
+// Contador
 const targetDate = new Date("February 24, 2026 00:00:00").getTime();
 
 const countdownFunction = setInterval(function() {
@@ -99,22 +130,17 @@ const countdownFunction = setInterval(function() {
 
     if (distance <= 0) {
         clearInterval(countdownFunction);
-        document.getElementById("countdown").style.display = "none";
-        document.getElementById("finalMessage").style.display = "block";
+        document.getElementById("countdown").innerHTML = "💛 ¡Feliz 22 meses! 💛";
         return;
     }
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
     document.getElementById("countdown").innerHTML =
-    "Faltan 💛 " + days + " días, " + hours + " horas y " + minutes + " minutos para nuestros 22 meses 💛";
+    "Faltan 💛 " + days + " días 💛";
 
 }, 1000);
 
-
-// Corazones cayendo
+// Corazones
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
@@ -123,11 +149,8 @@ function createHeart() {
     heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
     document.body.appendChild(heart);
 
-    setTimeout(() => {
-        heart.remove();
-    }, 6000);
+    setTimeout(() => { heart.remove(); }, 6000);
 }
-
 setInterval(createHeart, 300);
 
 </script>
